@@ -1,0 +1,81 @@
+---
+import Icon from "./Icon.astro";
+---
+
+<section class="box skills">
+  <div class="stack gap-2 lg:gap-4">
+    <Icon
+      icon="terminal-window"
+      color="var(--accent-regular)"
+      size="2.5rem"
+      gradient
+    />
+    <h2>Full Stack</h2>
+    <p>
+      J'adore HTML/CSS, JavaScript, PHP, Symfony, et SQL. Passionné par le
+      développement de projets complexes, de la conception à la production, mon
+      objectif est de créer des solutions robustes et efficaces.
+    </p>
+  </div>
+  <div class="stack gap-2 lg:gap-4">
+    <Icon icon="trophy" color="var(--accent-regular)" size="2.5rem" gradient />
+    <h2>Team player</h2>
+    <p>Travailler en équipe, en pair programming.</p>
+    <p>Conseiller et partager sont des valeurs qui me tiennent à coeur.</p>
+  </div>
+  <div class="stack gap-2 lg:gap-4">
+    <Icon
+      icon="strategy"
+      color="var(--accent-regular)"
+      size="2.5rem"
+      gradient
+    />
+    <h2>Esprit stratégique</h2>
+    <p>
+      Possédant un bon esprit stratégique, je suis en mesure d'analyser des
+      problématiques complexes et de concevoir des solutions optimales pour
+      atteindre des objectifs à long terme avec efficacité et précision.
+    </p>
+  </div>
+</section>
+
+<style>
+  .box {
+    border: 1px solid var(--gray-800);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    background-color: var(--gray-999_40);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .skills {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .skills h2 {
+    font-size: var(--text-lg);
+  }
+
+  .skills p {
+    color: var(--gray-400);
+  }
+
+  @media (min-width: 50em) {
+    .box {
+      border-radius: 1.5rem;
+      padding: 2.5rem;
+    }
+
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5rem;
+    }
+
+    .skills h2 {
+      font-size: var(--text-2xl);
+    }
+  }
+</style>
