@@ -23,5 +23,5 @@ Une fois que l'utilisateur a donné sa réponse, le tour passe au joueur suivant
 
 ### Technologies utilisées :
 
-Vue.js pour le Front-end
-Php (Laravel)
+Vue.js pour le Front-end <br>
+Php (Laravel) pour le Backend
