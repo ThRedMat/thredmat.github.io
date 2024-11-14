@@ -3,7 +3,7 @@ title: TripExpense
 publishDate: 23/09/2024
 img: /assets/tripexpense.png
 img_alt: page accueil de TripExpense
-description: |
+description: >
 TripExpense est une plateforme web conçue pour simplifier la gestion des dépenses de voyage, idéale à la fois pour les voyageurs touristiques et les professionnels en déplacement. 
 Elle propose des outils intuitifs pour enregistrer, suivre et analyser les dépenses en temps réel, que ce soit pour des vacances personnelles ou des voyages d'affaires.
 tags:
