@@ -1,6 +1,6 @@
 ---
 title: Plateforme Maraudes
-publishDate: 05/06/2023
+publishDate: "2023-06-05"
 img: /assets/maraudes.png
 img_alt: page d'accueil de maraudes
 description: |

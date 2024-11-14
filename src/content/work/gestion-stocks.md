@@ -1,6 +1,6 @@
 ---
 title: Application de gestion de stocks
-publishDate: 2024/05/22
+publishDate: "2024-05-22"
 img: /assets/flutter.png
 img_alt: page gestion de stocks
 description: |
