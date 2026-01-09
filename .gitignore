@@ -23,5 +23,5 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
-# CV
-Mathieu_DARRIBAU_Developpeur_Fullstack.pdf
+# about copy
+pages/work/about copy.astro
