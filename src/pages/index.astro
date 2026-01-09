@@ -28,7 +28,7 @@ const projects = (await getCollection("work"))
 <BaseLayout>
   <div class="stack gap-20 lg:gap-48">
     <div class="wrapper stack gap-8 lg:gap-20">
-      <header class="hero">
+      <header class="hero fade-in">
         <Hero
           title="Hello, je m'appelle Mathieu DARRIBAU"
           tagline="Je suis Développeur FullStack."
@@ -36,8 +36,14 @@ const projects = (await getCollection("work"))
         >
           <div class="roles">
             <Pill><Icon icon="code" size="1.33em" /> Développeur</Pill>
-            <!-- <Pill><Icon icon="microphone-stage" size="1.33em" /> Speaker</Pill>
-            <Pill><Icon icon="pencil-line" size="1.33em" /> Writer</Pill>-->
+          </div>
+          
+          <!-- Bouton de téléchargement du CV -->
+          <div class="cv-download">
+            <a href="/Mathieu_DARRIBAU_Developpeur_Fullstack.pdf" download class="cv-button">
+              <Icon icon="paper-plane-tilt" size="1.2em" />
+              Télécharger mon CV
+            </a>
           </div>
         </Hero>
 
@@ -49,11 +55,13 @@ const projects = (await getCollection("work"))
         />
       </header>
 
-      <Skills />
+      <div class="fade-in">
+        <Skills />
+      </div>
     </div>
 
     <main class="wrapper stack gap-20 lg:gap-48">
-      <section class="section with-background with-cta">
+      <section class="section with-background with-cta fade-in">
         <header class="section-header stack gap-2 lg:gap-4">
           <h3>Mes derniers projets</h3>
           <p>
@@ -66,7 +74,7 @@ const projects = (await getCollection("work"))
           <Grid variant="offset">
             {
               projects.map((project) => (
-                <li>
+                <li class="fade-in">
                   <PortfolioPreview project={project} />
                 </li>
               ))
@@ -83,7 +91,9 @@ const projects = (await getCollection("work"))
       </section>
     </main>
 
-    <ContactCTA />
+    <div class="fade-in">
+      <ContactCTA />
+    </div>
   </div>
 </BaseLayout>
 
@@ -105,6 +115,53 @@ const projects = (await getCollection("work"))
     object-position: top;
     border-radius: 1.5rem;
     box-shadow: var(--shadow-md);
+  }
+
+  /* Style du bouton CV */
+  .cv-download {
+    margin-top: 1rem;
+  }
+
+  .cv-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--gradient-accent);
+    color: white;
+    text-decoration: none;
+    border-radius: 999rem;
+    font-weight: 500;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: var(--shadow-sm);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .cv-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    animation: none;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+
+  /* Animation au scroll */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   @media (min-width: 50em) {
@@ -231,3 +288,24 @@ const projects = (await getCollection("work"))
     }
   }
 </style>
+
+<script>
+  // Animation au scroll
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+
+  // Observer tous les éléments avec la classe fade-in
+  document.querySelectorAll('.fade-in').forEach((element) => {
+    observer.observe(element);
+  });
+</script>
