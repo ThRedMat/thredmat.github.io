@@ -7,33 +7,228 @@ import ContactCTA from "../components/ContactCTA.astro";
 import PortfolioPreview from "../components/PortfolioPreview.astro";
 import Hero from "../components/Hero.astro";
 import Grid from "../components/Grid.astro";
+import Icon from "../components/Icon.astro";
 
 const projects = (await getCollection("work")).sort(
-  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
 );
+
+// Mapping des technologies et descriptions par projet
+const projectTechs = {
+  "tripexpense": ["HTML", "CSS", "JavaScript", "PHP", "SQL", "Hostinger"],
+  "portail-robustest": ["HTML", "CSS", "JavaScript", "Hostinger"],
+  "piloco": ["Vue.js", "PHP", "Laravel"],
+  "gestion-stocks": ["Flutter", "Firebase"],
+  "maraudes": ["HTML", "CSS", "JavaScript", "PHP"]
+};
+
+const projectDescriptions = {
+  "tripexpense": "Application web de gestion collaborative des dépenses de voyage",
+  "portail-robustest": "Refonte d'une plateforme publique pour améliorer l'expérience utilisateur",
+  "piloco": "Plateforme de jeux en ligne avec système de scores et classements",
+  "gestion-stocks": "Application mobile pour la gestion en temps réel des stocks d'entreprise",
+  "maraudes": "Plateforme de coordination pour les maraudes solidaires"
+};
+
+// Extraire toutes les technologies uniques pour les filtres
+const allTechs = [...new Set(Object.values(projectTechs).flat())].sort();
 ---
 
 <BaseLayout
-  title="Mes projets "
-  description="Découvrez mes projets les plus récents ci-dessous pour avoir une idée de mon expérience passée."
+  title="Mes projets | Mathieu DARRIBAU"
+  description="Découvrez mes projets les plus récents"
 >
   <div class="stack gap-20">
     <main class="wrapper stack gap-8">
-      <Hero
-        title="Mes projets"
-        tagline="Découvrez mes projets les plus récents ci-dessous pour avoir une idée de mon expérience passée."
-        align="start"
-      />
-      <Grid variant="offset">
+      <div class="fade-in">
+        <Hero
+          title="Mes projets"
+          tagline="Découvrez mes projets les plus récents ci-dessous pour avoir une idée de mon expérience passée."
+          align="start"
+        />
+      </div>
+
+      <!-- Filtres de technologies -->
+      <div class="filters fade-in">
+        <button class="filter-btn active" data-filter="all">
+          <Icon icon="list" size="1em" />
+          Tous
+        </button>
+        {allTechs.map((tech) => (
+          <button class="filter-btn" data-filter={tech}>
+            {tech}
+          </button>
+        ))}
+      </div>
+      
+      <Grid variant="offset" id="projects-grid">
         {
-          projects.map((project) => (
-            <li>
-              <PortfolioPreview project={project} />
-            </li>
-          ))
+          projects.map((project, index) => {
+            const techs = projectTechs[project.slug] || [];
+            const description = projectDescriptions[project.slug] || "";
+            return (
+              <li 
+                class="fade-in project-card" 
+                style={`animation-delay: ${index * 0.1}s`}
+                data-techs={JSON.stringify(techs)}
+              >
+                <PortfolioPreview project={project} />
+                {description && (
+                  <p class="project-description">{description}</p>
+                )}
+                <div class="tech-badges">
+                  {techs.map((tech) => (
+                    <span class="badge">{tech}</span>
+                  ))}
+                </div>
+              </li>
+            );
+          })
         }
       </Grid>
     </main>
-    <ContactCTA />
+    
+    <div class="fade-in">
+      <ContactCTA />
+    </div>
   </div>
 </BaseLayout>
+
+<style>
+  /* Animation au scroll */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Filtres */
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    margin: 2rem 0;
+  }
+
+  .filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--gray-999);
+    color: var(--gray-300);
+    border: 1px solid var(--gray-800);
+    border-radius: 999rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .filter-btn:hover {
+    background: var(--gray-800);
+    border-color: var(--gray-700);
+    transform: translateY(-2px);
+  }
+
+  .filter-btn.active {
+    background: var(--gradient-accent);
+    color: var(--gray-999);
+    border-color: transparent;
+  }
+
+  /* Badges de technologies */
+  .tech-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 0 1rem 1rem;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: var(--gradient-subtle);
+    color: var(--gray-200);
+    border: 1px solid var(--gray-800);
+    border-radius: 999rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+
+  /* Description du projet */
+  .project-description {
+    padding: 0.75rem 1rem 0;
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--gray-300);
+    font-style: italic;
+  }
+
+  /* Effet hover sur les cartes de projets */
+  :global(.project-card) {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  :global(.project-card:hover) {
+    transform: translateY(-8px);
+  }
+
+  :global(.project-card.hidden) {
+    display: none;
+  }
+</style>
+
+<script>
+  // Animation au scroll
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+
+  // Observer tous les éléments avec la classe fade-in
+  document.querySelectorAll('.fade-in').forEach((element) => {
+    observer.observe(element);
+  });
+
+  // Système de filtrage
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const projectCards = document.querySelectorAll('.project-card');
+
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const filter = button.dataset.filter;
+      
+      // Mettre à jour les boutons actifs
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      // Filtrer les projets
+      projectCards.forEach(card => {
+        const cardTechs = JSON.parse(card.dataset.techs || '[]');
+        
+        if (filter === 'all' || cardTechs.includes(filter)) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>
