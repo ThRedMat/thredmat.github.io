@@ -61,31 +61,33 @@ const allTechs = [...new Set(Object.values(projectTechs).flat())].sort();
         ))}
       </div>
       
-      <Grid variant="offset" id="projects-grid">
-        {
-          projects.map((project, index) => {
-            const techs = projectTechs[project.slug] || [];
-            const description = projectDescriptions[project.slug] || "";
-            return (
-              <li 
-                class="fade-in project-card" 
-                style={`animation-delay: ${index * 0.1}s`}
-                data-techs={JSON.stringify(techs)}
-              >
-                <PortfolioPreview project={project} />
-                {description && (
-                  <p class="project-description">{description}</p>
-                )}
-                <div class="tech-badges">
-                  {techs.map((tech) => (
-                    <span class="badge">{tech}</span>
-                  ))}
-                </div>
-              </li>
-            );
-          })
-        }
-      </Grid>
+      <div id="projects-grid">
+        <Grid variant="offset">
+          {
+            projects.map((project, index) => {
+              const techs = projectTechs[project.slug] || [];
+              const description = projectDescriptions[project.slug] || "";
+              return (
+                <li 
+                  class="fade-in project-card" 
+                  style={`animation-delay: ${index * 0.1}s`}
+                  data-techs={JSON.stringify(techs)}
+                >
+                  <PortfolioPreview project={project} />
+                  {description && (
+                    <p class="project-description">{description}</p>
+                  )}
+                  <div class="tech-badges">
+                    {techs.map((tech) => (
+                      <span class="badge">{tech}</span>
+                    ))}
+                  </div>
+                </li>
+              );
+            })
+          }
+        </Grid>
+      </div>
     </main>
     
     <div class="fade-in">
