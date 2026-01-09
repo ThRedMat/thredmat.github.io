@@ -213,7 +213,7 @@ const allTechs = [...new Set(Object.values(projectTechs).flat())].sort();
 
   filterButtons.forEach(button => {
     button.addEventListener('click', () => {
-      const filter = button.dataset.filter;
+      const filter = (button as HTMLElement).dataset.filter;
       
       // Mettre à jour les boutons actifs
       filterButtons.forEach(btn => btn.classList.remove('active'));
@@ -221,7 +221,7 @@ const allTechs = [...new Set(Object.values(projectTechs).flat())].sort();
 
       // Filtrer les projets
       projectCards.forEach(card => {
-        const cardTechs = JSON.parse(card.dataset.techs || '[]');
+        const cardTechs = JSON.parse((card as HTMLElement).dataset.techs || '[]');
         
         if (filter === 'all' || cardTechs.includes(filter)) {
           card.classList.remove('hidden');
