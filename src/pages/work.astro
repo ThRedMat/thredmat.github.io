@@ -14,16 +14,16 @@ const projects = (await getCollection("work")).sort(
 );
 
 // Mapping des technologies et descriptions par projet
-const projectTechs = {
-  "tripexpense": ["HTML", "CSS", "JavaScript", "PHP", "SQL", "Hostinger"],
+const projectTechs: Record<string, string[]> = {
+  "tripexpenses": ["HTML", "CSS", "JavaScript", "PHP", "SQL", "Hostinger"],
   "portail-robustest": ["HTML", "CSS", "JavaScript", "Hostinger"],
   "piloco": ["Vue.js", "PHP", "Laravel"],
   "gestion-stocks": ["Flutter", "Firebase"],
   "maraudes": ["HTML", "CSS", "JavaScript", "PHP"]
 };
 
-const projectDescriptions = {
-  "tripexpense": "Application web de gestion collaborative des dépenses de voyage",
+const projectDescriptions: Record<string, string> = {
+  "tripexpenses": "Application web de gestion collaborative des dépenses de voyage",
   "portail-robustest": "Refonte d'une plateforme publique pour améliorer l'expérience utilisateur",
   "piloco": "Plateforme de jeux en ligne avec système de scores et classements",
   "gestion-stocks": "Application mobile pour la gestion en temps réel des stocks d'entreprise",
@@ -48,7 +48,6 @@ const allTechs = [...new Set(Object.values(projectTechs).flat())].sort();
         />
       </div>
 
-      <!-- Filtres de technologies -->
       <div class="filters fade-in">
         <button class="filter-btn active" data-filter="all">
           <Icon icon="list" size="1em" />
@@ -62,11 +61,17 @@ const allTechs = [...new Set(Object.values(projectTechs).flat())].sort();
       </div>
       
       <div id="projects-grid">
-        <Grid variant="offset">
+        <Grid>
           {
             projects.map((project, index) => {
               const techs = projectTechs[project.slug] || [];
               const description = projectDescriptions[project.slug] || "";
+              
+              // Formatage de la date en français (ex: "févr. 2024")
+              const dateFormatee = project.data.publishDate 
+                ? new Intl.DateTimeFormat('fr-FR', { month: 'short', year: 'numeric' }).format(project.data.publishDate)
+                : '';
+
               return (
                 <li 
                   class="fade-in project-card" 
@@ -74,9 +79,17 @@ const allTechs = [...new Set(Object.values(projectTechs).flat())].sort();
                   data-techs={JSON.stringify(techs)}
                 >
                   <PortfolioPreview project={project} />
+                  
+                  {dateFormatee && (
+                    <div class="date-container">
+                      <span class="date-badge">{dateFormatee}</span>
+                    </div>
+                  )}
+
                   {description && (
                     <p class="project-description">{description}</p>
                   )}
+                  
                   <div class="tech-badges">
                     {techs.map((tech) => (
                       <span class="badge">{tech}</span>
@@ -143,6 +156,24 @@ const allTechs = [...new Set(Object.values(projectTechs).flat())].sort();
     background: var(--gradient-accent);
     color: var(--gray-999);
     border-color: transparent;
+  }
+
+  /* Style de la date ajoutée */
+  .date-container {
+    padding: 1rem 1rem 0;
+    margin-bottom: -0.25rem;
+  }
+
+  .date-badge {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    background: var(--gray-800);
+    color: var(--gray-400);
+    border-radius: 0.25rem;
+    border: 1px solid var(--gray-700);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: capitalize;
   }
 
   /* Badges de technologies */

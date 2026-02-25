@@ -1,7 +1,7 @@
 ---
 title: TripExpenses
 publishDate: "2024-09-25"
-img: /assets/tripexpense.png
+img: /assets/tripexpenses.png
 img_alt: "Page accueil de TripExpenses"
 description: |
   TripExpenses est une plateforme web conçue pour simplifier la gestion des dépenses de voyage, idéale à la fois pour les voyageurs touristiques et les professionnels en déplacement. 
@@ -23,7 +23,7 @@ La plateforme s'adapte aux besoins des particuliers cherchant à maîtriser leur
 
 Avec une interface simple d’utilisation et des fonctionnalités polyvalentes, TripExpenses devient le compagnon de voyage idéal pour une gestion transparente et efficace des dépenses, que l'on soit en mode découverte ou en mission professionnelle.<br>
 
-Vous souhaitez y accéder, alors rendez-vous à cette adresse : https://tripexpenses.fr/.
+<p>Vous souhaitez y accéder, alors rendez-vous à cette adresse : <a href="https://tripexpenses.fr/" target="_blank" rel="noopener noreferrer">https://tripexpenses.fr/</a>.</p>
 
 ### Technologies utilisées :
 
