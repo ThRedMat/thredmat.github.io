@@ -1,153 +1,132 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-
 import ContactCTA from "../components/ContactCTA.astro";
 import Hero from "../components/Hero.astro";
+import Pill from "../components/Pill.astro";
 ---
 
 <BaseLayout
   title="À propos | Mathieu DARRIBAU"
-  description="Découvrez le parcours de Mathieu DARRIBAU, développeur web full-stack spécialisé React et PHP à Bordeaux."
+  description="Ingénieur Full-stack & Expert IA certifié Anthropic Claude Actions. Spécialiste des systèmes critiques."
 >
   <div class="stack gap-20">
     <main class="wrapper about">
-      <div class="fade-in">
-        <Hero title="À propos de moi" tagline="Découvrez mon parcours, mes expériences et mes compétences.">
-          <img
-            width="1553"
-            height="873"
-            src="/assets/work.webp"
-            alt="Mathieu DARRIBAU au travail"
-          />
+      <div class="hero-section">
+        <Hero 
+          title="Architecture, Terrain & IA" 
+          tagline="Développeur Full-stack expert, certifié Anthropic Claude Actions. Une vision du code forgée par la sécurité ferroviaire."
+        >
+          <div class="image-container">
+            <img
+              width="1553"
+              height="873"
+              src="/assets/work.webp"
+              alt="Mathieu DARRIBAU, expert en ingénierie logicielle"
+            />
+            <div class="image-overlay"></div>
+          </div>
         </Hero>
       </div>
 
-      <section class="fade-in">
-        <h2 class="section-title">Parcours</h2>
+      <section class="reveal-section">
+        <h2 class="section-title">Mon Parcours</h2>
         <div class="content">
           <p>
-            Développeur Fullstack diplômé d'un <strong>BAC+5</strong>, j'ai forgé mon expertise au cœur de projets d'envergure, notamment durant <strong>2 ans en alternance chez SNCF Réseau</strong>. Cette expérience au sein d'une structure aux enjeux critiques m'a inculqué une grande rigueur technique et une forte capacité d'adaptation.
+            Mon expertise s'est construite sur une dualité rare : la <strong>conception logicielle</strong> et la <strong>réalité opérationnelle</strong>. Après deux ans au cœur de l'IT chez <strong>SNCF Réseau</strong>, j'ai choisi d'éprouver ma rigueur sur le terrain en tant qu'<strong>Agent de Circulation</strong>. 
           </p>
-          <br />
           <p>
-            Maîtrisant l'écosystème JavaScript (<strong>React, Node.js</strong>) ainsi que l'univers PHP (<strong>Symfony</strong>), j'aime concevoir des solutions numériques innovantes et performantes. Je reste en veille constante pour intégrer les meilleures pratiques d'un secteur qui évolue sans cesse.
+            Cette immersion d'un an dans la sécurité ferroviaire m'a apporté une compétence que peu de développeurs possèdent : la compréhension profonde des enjeux de <strong>disponibilité critique</strong> et de <strong>gestion du risque</strong>. En informatique, comme sur les rails, l'erreur n'est pas une option.
           </p>
-          <br />
           <p>
-            Passionné par les jeux de stratégie, je transpose cette vision analytique dans mon code : anticiper les problématiques, structurer l'architecture et privilégier le travail d'équipe (Pair Programming, Agile) pour stimuler l'innovation.
+            Depuis fin 2025, je consacre mon énergie à la prochaine frontière technologique : l'<strong>IA Agentique</strong>. Ma récente certification <strong>Anthropic Claude Actions</strong> marque l'aboutissement d'une période de R&D personnelle intense, visant à transformer les modèles de langage en véritables agents opérationnels capables d'interagir avec des écosystèmes logiciels complexes.
           </p>
         </div>
       </section>
 
-      <section class="fade-in">
-        <h2 class="section-title">Diplômes</h2>
+      <section class="reveal-section">
+        <h2 class="section-title">Expertises Clés</h2>
         <div class="content">
-          <p>
-            <strong>Expert en Informatique et Systèmes d'Information</strong> <br />
-            Spécialité Développement Web (Titre RNCP de niveau 7 - BAC+5).
-          </p>
+          <div class="skill-group">
+            <h3>Intelligence Artificielle</h3>
+            <div class="pill-group">
+              <Pill>Anthropic Claude Actions (Certifié)</Pill>
+              <Pill>Agentic Workflows</Pill>
+              <Pill>Tool Use & API Integration</Pill>
+            </div>
+          </div>
+          
+          <div class="skill-group">
+            <h3>Full-stack Development</h3>
+            <div class="pill-group">
+              <Pill>React 18 / Node.js</Pill>
+              <Pill>PHP 8 (Symfony/Laravel)</Pill>
+              <Pill>TypeScript</Pill>
+              <Pill>PostgreSQL & SQL Server</Pill>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h3>Culture Industrielle</h3>
+            <div class="pill-group">
+              <Pill>Sécurité des Systèmes</Pill>
+              <Pill>Gestion Opérationnelle</Pill>
+              <Pill>Agilité & Rigueur SNCF</Pill>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="fade-in">
-        <h2 class="section-title">Compétences</h2>
+      <section class="reveal-section">
+        <h2 class="section-title">Formation</h2>
         <div class="content">
-          <p>
-            <strong>Soft Skills :</strong> Autonome, Rigueur ferroviaire, Esprit d'équipe, Sens de l'organisation, Curiosité technique.
-          </p>
-          <p>
-            <strong>Méthodes :</strong> Agile (Scrum), Documentation, Gestion de projet.
-          </p>
+          <div class="education-card">
+            <p class="education-title">Expert en Informatique et Systèmes d'Information</p>
+            <p class="education-details">Diplôme BAC+5 (Niveau 7) | Spécialisation Ingénierie Logicielle</p>
+          </div>
         </div>
       </section>
     </main>
 
-    <div class="fade-in">
+    <div class="reveal-section">
         <ContactCTA />
     </div>
   </div>
 </BaseLayout>
 
 <style>
-  .about {
-    display: flex;
-    flex-direction: column;
-    gap: 3.5rem;
-  }
-
-  /* --- STYLE DE L'ANIMATION FADE-IN --- */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
-
-  .fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  img {
-    margin-top: 1.5rem;
-    border-radius: 1.5rem;
-    box-shadow: var(--shadow-md);
-  }
-
-  section {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    color: var(--gray-200);
-  }
-
-  .section-title {
-    grid-column-start: 1;
-    font-size: var(--text-xl);
-    color: var(--gray-0);
-  }
-
-  .content {
-    grid-column: 2 / 4;
-  }
-
-  .content strong {
-    color: var(--gray-0);
-  }
+  /* [Garder le même CSS que précédemment pour la cohérence des animations] */
+  .about { display: flex; flex-direction: column; gap: 5rem; }
+  .reveal-section { opacity: 0; transform: translateY(25px); transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .reveal-section.visible { opacity: 1; transform: translateY(0); }
+  .image-container { position: relative; margin-top: 2rem; border-radius: 1.5rem; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+  img { display: block; width: 100%; height: auto; transition: transform 0.8s ease; }
+  .image-container:hover img { transform: scale(1.03); }
+  .image-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 70%, var(--gray-999)); pointer-events: none; }
+  section { display: flex; flex-direction: column; gap: 1.5rem; }
+  .section-title { font-size: var(--text-2xl); color: var(--gray-0); position: relative; padding-bottom: 0.5rem; }
+  .section-title::after { content: ""; position: absolute; bottom: 0; left: 0; width: 3rem; height: 3px; background: var(--gradient-accent); border-radius: 2px; }
+  .content { color: var(--gray-200); line-height: 1.7; }
+  .content p { margin-bottom: 1.25rem; }
+  .content strong { color: var(--gray-0); font-weight: 600; }
+  .skill-group { margin-bottom: 2rem; }
+  .skill-group h3 { font-size: var(--text-md); color: var(--gray-300); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+  .pill-group { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .education-card { padding: 1.5rem; background: var(--gray-999); border: 1px solid var(--gray-800); border-radius: 1rem; border-left: 4px solid var(--accent-regular); }
+  .education-title { font-size: var(--text-lg); font-weight: 700; color: var(--gray-0); margin-bottom: 0.25rem !important; }
+  .education-details { color: var(--gray-400); margin: 0 !important; }
 
   @media (min-width: 50em) {
-    .about {
-      display: grid;
-      grid-template-columns: 1fr 60% 1fr;
-    }
-
-    .about > :global(:first-child) {
-      grid-column-start: 2;
-    }
-
-    section {
-      display: contents;
-      font-size: var(--text-lg);
-    }
+    .about { display: grid; grid-template-columns: 1fr 65% 1fr; }
+    .hero-section { grid-column: 2; }
+    section { display: grid; grid-template-columns: 250px 1fr; grid-column: 2; gap: 3rem; }
+    .section-title { font-size: var(--text-xl); }
   }
 </style>
 
 <script>
-  // Script pour déclencher l'apparition au scroll
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
-
+  const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
   }, observerOptions);
-
-  // On observe tous les éléments avec la classe .fade-in
-  document.querySelectorAll('.fade-in').forEach((element) => {
-    observer.observe(element);
-  });
+  document.querySelectorAll('.reveal-section').forEach((element) => observer.observe(element));
 </script>

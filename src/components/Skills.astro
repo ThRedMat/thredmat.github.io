@@ -10,18 +10,21 @@ import Icon from "./Icon.astro";
       size="2.5rem"
       gradient
     />
-    <h2>Full Stack</h2>
+    <h2>Expertise Full Stack</h2>
     <p>
-      J'adore HTML/CSS, JavaScript, PHP, Symfony, et SQL. Passionné par le
-      développement de projets complexes, de la conception à la production, mon
-      objectif est de créer des solutions robustes et efficaces.
+      Conception d'architectures web résilientes, de l'interface utilisateur 
+      (React) aux couches serveurs complexes (PHP/Symfony). Je privilégie la 
+      performance et la maintenabilité pour bâtir des solutions prêtes pour la production.
     </p>
   </div>
   <div class="stack gap-2 lg:gap-4">
     <Icon icon="trophy" color="var(--accent-regular)" size="2.5rem" gradient />
-    <h2>Team player</h2>
-    <p>Travailler en équipe, en pair programming.</p>
-    <p>Conseiller et partager sont des valeurs qui me tiennent à coeur.</p>
+    <h2>Agilité & Transmission</h2>
+    <p>
+      Adepte du Pair Programming et des méthodologies Agiles, je considère le 
+      partage de connaissances comme un levier de performance collective. Mon 
+      objectif est de garantir la qualité du code et la pérennité technique des projets.
+    </p>
   </div>
   <div class="stack gap-2 lg:gap-4">
     <Icon
@@ -30,11 +33,11 @@ import Icon from "./Icon.astro";
       size="2.5rem"
       gradient
     />
-    <h2>Esprit stratégique</h2>
+    <h2>Vision Systémique</h2>
     <p>
-      Possédant un bon esprit stratégique, je suis en mesure d'analyser des
-      problématiques complexes et de concevoir des solutions optimales pour
-      atteindre des objectifs à long terme avec efficacité et précision.
+      Analyse critique des enjeux métier pour transformer des problématiques complexes 
+      en solutions simples. Alliant la rigueur industrielle acquise à la SNCF et 
+      l'innovation de l'IA Agentique, j'anticipe les besoins pour des architectures durables.
     </p>
   </div>
 </section>
@@ -56,10 +59,12 @@ import Icon from "./Icon.astro";
 
   .skills h2 {
     font-size: var(--text-lg);
+    color: var(--gray-0); /* Un peu plus de contraste pour les titres */
   }
 
   .skills p {
     color: var(--gray-400);
+    line-height: 1.6; /* Meilleure lisibilité pour des textes plus denses */
   }
 
   @media (min-width: 50em) {

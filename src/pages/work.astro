@@ -19,7 +19,8 @@ const projectTechs: Record<string, string[]> = {
   "portail-robustest": ["HTML", "CSS", "JavaScript", "Hostinger"],
   "piloco": ["Vue.js", "PHP", "Laravel"],
   "gestion-stocks": ["Flutter", "Firebase"],
-  "maraudes": ["HTML", "CSS", "JavaScript", "PHP"]
+  "maraudes": ["HTML", "CSS", "JavaScript", "PHP"],
+  "carburantfr": ["React", "JavaScript", "API REST", "Github Pages"],
 };
 
 const projectDescriptions: Record<string, string> = {
@@ -27,7 +28,8 @@ const projectDescriptions: Record<string, string> = {
   "portail-robustest": "Refonte d'une plateforme publique pour améliorer l'expérience utilisateur",
   "piloco": "Plateforme de jeux en ligne avec système de scores et classements",
   "gestion-stocks": "Application mobile pour la gestion en temps réel des stocks d'entreprise",
-  "maraudes": "Plateforme de coordination pour les maraudes solidaires"
+  "maraudes": "Plateforme de coordination pour les maraudes solidaires",
+  "carburantfr": "Application web pour trouver les prix du carburant en temps réel",
 };
 
 // Extraire toutes les technologies uniques pour les filtres
@@ -49,12 +51,12 @@ const allTechs = [...new Set(Object.values(projectTechs).flat())].sort();
       </div>
 
       <div class="filters fade-in">
-        <button class="filter-btn active" data-filter="all">
+        <button class="filter-btn active" data-filter="all" aria-pressed="true">
           <Icon icon="list" size="1em" />
           Tous
         </button>
         {allTechs.map((tech) => (
-          <button class="filter-btn" data-filter={tech}>
+          <button class="filter-btn" data-filter={tech} aria-pressed="false">
             {tech}
           </button>
         ))}
@@ -76,7 +78,7 @@ const allTechs = [...new Set(Object.values(projectTechs).flat())].sort();
                 <li 
                   class="fade-in project-card" 
                   style={`animation-delay: ${index * 0.1}s`}
-                  data-techs={JSON.stringify(techs)}
+                  data-techs={techs.join(',')} 
                 >
                   <PortfolioPreview project={project} />
                   
@@ -218,6 +220,15 @@ const allTechs = [...new Set(Object.values(projectTechs).flat())].sort();
   :global(.project-card.hidden) {
     display: none;
   }
+
+  /* Effet de survol subtil sur l'image (Zoom) */
+  :global(.project-card img) {
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  :global(.project-card:hover img) {
+    transform: scale(1.05);
+  }
 </style>
 
 <script>
@@ -235,33 +246,59 @@ const allTechs = [...new Set(Object.values(projectTechs).flat())].sort();
     });
   }, observerOptions);
 
-  // Observer tous les éléments avec la classe fade-in
   document.querySelectorAll('.fade-in').forEach((element) => {
     observer.observe(element);
   });
 
-  // Système de filtrage
+  // Système de filtrage optimisé
   const filterButtons = document.querySelectorAll('.filter-btn');
   const projectCards = document.querySelectorAll('.project-card');
 
   filterButtons.forEach(button => {
     button.addEventListener('click', () => {
-      const filter = (button as HTMLElement).dataset.filter;
+      const filter = (button as HTMLElement).dataset.filter || 'all';
       
-      // Mettre à jour les boutons actifs
-      filterButtons.forEach(btn => btn.classList.remove('active'));
+      // 1. Mettre à jour l'état visuel ET l'accessibilité
+      filterButtons.forEach(btn => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
+      });
       button.classList.add('active');
+      button.setAttribute('aria-pressed', 'true');
 
-      // Filtrer les projets
+      // 2. Mettre à jour l'URL sans recharger la page
+      if (filter) {
+        const newUrl = filter === 'all' 
+          ? window.location.pathname 
+          : `?tech=${encodeURIComponent(filter)}`;
+        window.history.pushState({ path: newUrl }, '', newUrl);
+      }
+
+      // 3. Filtrer les projets
       projectCards.forEach(card => {
-        const cardTechs = JSON.parse((card as HTMLElement).dataset.techs || '[]');
+        const cardTechs = (card as HTMLElement).dataset.techs || '';
         
-        if (filter === 'all' || cardTechs.includes(filter)) {
+        if (filter === 'all' || cardTechs.split(',').includes(filter)) {
           card.classList.remove('hidden');
         } else {
           card.classList.add('hidden');
         }
       });
     });
+  });
+
+  // BONUS : Lire l'URL au chargement de la page pour appliquer un filtre externe
+  window.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const techParam = params.get('tech');
+    
+    if (techParam) {
+      const targetButton = Array.from(filterButtons).find(
+        btn => (btn as HTMLElement).dataset.filter === techParam
+      );
+      if (targetButton) {
+        (targetButton as HTMLElement).click();
+      }
+    }
   });
 </script>
