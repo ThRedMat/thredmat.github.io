@@ -1,6 +1,6 @@
 ---
 title: TripExpenses
-publishDate: "2024-09-25"
+publishDate: "2025-09-25"
 img: /assets/tripexpenses.png
 img_alt: "Page accueil de TripExpenses"
 description: |

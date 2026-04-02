@@ -1,30 +1,45 @@
-# Astro Starter Kit: Portfolio
+# Portfolio de Mathieu DARRIBAU
 
-```sh
-npm create astro@latest -- --template portfolio
-```
+[![Portfolio en ligne](https://img.shields.io/badge/Voir_le_site-thredmat.github.io-blue?style=flat-square)](https://thredmat.github.io/)
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/portfolio)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/portfolio)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/portfolio/devcontainer.json)
+Ce dépôt contient le code source de mon portfolio. Ce site a pour but de centraliser mes réalisations marquantes et d'illustrer concrètement mon expertise en informatique. À travers une sélection de projets clés, il témoigne de ma démarche créative, de mes compétences techniques et de ma capacité à répondre à des problématiques complexes.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+![Aperçu de la section projets](public/assets/projets.png)
 
-![portfolio](https://user-images.githubusercontent.com/357379/210779178-a98f0fb7-6b1a-4068-894c-8e1403e26654.jpg)
+## Architecture technique
 
-## 🧞 Commands
+Ce projet est développé avec [Astro](https://astro.build/), un framework web moderne axé sur les performances et l'optimisation de la distribution de contenu.
 
-All commands are run from the root of the project, from a terminal:
+## Exécution en environnement de développement
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Si vous souhaitez explorer l'architecture du projet ou le faire tourner en local, suivez les instructions ci-dessous.
 
-## 👀 Want to learn more?
+Prérequis : Node.js installé sur votre machine.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+1. Installation des dépendances :
+
+   ```bash
+   npm install
+   ```
+
+2. Démarrage du serveur de développement :
+   ```bash
+   npm run dev
+   ```
+   Le site sera accessible à l'adresse `http://localhost:4321`.
+
+### Liste des commandes disponibles
+
+Toutes les commandes doivent être lancées depuis la racine du répertoire :
+
+| Commande            | Action                                                                    |
+| :------------------ | :------------------------------------------------------------------------ |
+| `npm install`       | Installe les dépendances du projet.                                       |
+| `npm run dev`       | Lance le serveur local pour le développement.                             |
+| `npm run build`     | Génère la version optimisée pour la production dans le dossier `./dist/`. |
+| `npm run preview`   | Permet de tester localement le rendu de la version de production.         |
+| `npm run astro ...` | Exécute les commandes CLI Astro (ex: `astro check`).                      |
+
+## Contact et Déploiement
+
+Le site est continuellement déployé via GitHub Pages et est consultable ici : [https://thredmat.github.io/](https://thredmat.github.io/)
